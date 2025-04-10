@@ -1,7 +1,7 @@
-# Use an official Python image
+# Use Python base image
 FROM python:3.10-slim
 
-# Install system-level dependencies
+# Install system-level dependencies for OpenCV
 RUN apt-get update && apt-get install -y \
     libgl1 \
     && rm -rf /var/lib/apt/lists/*
@@ -9,15 +9,15 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Copy requirements and install
+# Copy and install dependencies
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Copy the rest of your app
+# Copy your project
 COPY . .
 
-# Expose the port your Flask app runs on
+# Expose Flask port
 EXPOSE 5000
 
-# Run the Flask app
+# Run your app
 CMD ["python", "app.py"]
