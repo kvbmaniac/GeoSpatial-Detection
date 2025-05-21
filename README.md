@@ -1,1 +1,1 @@
-# GeoSpatial-Detection
+# GeoSpatial-Segmentation
